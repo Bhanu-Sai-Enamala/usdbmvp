@@ -30,7 +30,10 @@ git clone https://github.com/bitcoin-core/btcdeb.git
 
 ```bash
 git clone https://github.com/anshika1307-code/ord-btclock
-cd ord-btclock
+```
+sync to branch named "bhanu" 
+Then build 
+``` bash
 cargo build --release
 ```
 
