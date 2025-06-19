@@ -6,6 +6,7 @@ import json
 from generateP2TRaddress import generate_bech32m_address
 from pathOneUnclock import run_path_one_unlock
 from pathTwoUnlock import run_path_two_unlock
+from liquidator import create_liquidator_wallet, fund_liquidator_wallet, mine, run_mint_with_btc_lock
 app = Flask(__name__)
 
 
@@ -32,9 +33,6 @@ HTML_TEMPLATE = """
         <h2>Admin Section</h2>
         <form method="post" style="display:inline;">
             <button name="action" value="get_balance" style="background-color:#4CAF50;color:white">Get Wallet Balance</button>
-        </form>
-        <form method="post" style="display:inline;">
-            <button name="action" value="start_env" style="background-color:#4CAF50;color:white">Start ord,bitcoin test server</button>
         </form>
         <form method="post" style="display:inline;">
             <button name="action" value="etch_rune" style="background-color:#2196F3;color:white">Etch Rune</button>
@@ -96,7 +94,12 @@ HTML_TEMPLATE = """
     <h3>oracle provides signature for liquidation</h3>
     <h3>The auctionee(liquidation provider) receives the partially signed transaction, signs and brodcasts. Thus the BTC is unlocked through different path and corresponding runes burnt in same transaction. n</h3>
     <form method="post">
-        <!-- Placeholder for logic to be added -->
+        <button name="action" value="create_liquidator">Create Liquidator</button>
+    </form>
+    <form method="post">
+        <button name="action" value="fund_liquidator">Fund Liquidator</button>
+    </form>
+    <form method="post">
         <button name="action" value="auction_btc">Auction BTC</button>
     </form>
     </div>
@@ -236,6 +239,24 @@ def index():
                     result = f"✅ BTC auctioned off and corresponding Runes Burnt:\n{output}"
                 else:
                     result = f"❌ No BTC to unlock or error in unlocking process.\nDetails:\n{output}"
+            elif action == "create_liquidator":
+        
+            # Replace with actual logic to run the script
+                output = create_liquidator_wallet()
+                if output:
+                    result = f"Liquidator created\n{output}"
+                else:
+                    result = f"error creating liquidator\n{output}"
+            elif action == "fund_liquidator":
+        
+            # Replace with actual logic to run the script
+                fund_liquidator_wallet()
+                mine()
+                output = run_mint_with_btc_lock()
+                if output:
+                    result = f"Liquidator funded\n{output}"
+                else:
+                    result = f"error funding liquidator\n{output}"
         except subprocess.CalledProcessError as e:
             result = f"Error:\n{e.output}"
     return render_template_string(HTML_TEMPLATE, result=result)

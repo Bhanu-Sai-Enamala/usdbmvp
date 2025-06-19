@@ -68,13 +68,12 @@ def run_mint_with_btc_lock():
         text=True
     )
     print("🧊 Minted with BTC lock .")
-    print(result)
+    return(result)
 
 if __name__ == "__main__":
-    create_liquidator_wallet()
+    # create_liquidator_wallet()
     fund_liquidator_wallet()
     mine()
-    
     run_mint_with_btc_lock()
 
 

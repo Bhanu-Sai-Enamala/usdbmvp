@@ -205,7 +205,7 @@ def run_path_one_unlock():
         # Example: Write to file
     else:
         print("final_scriptwitness not found in the decoded PSBT.")
-    #insert sighash generation  command - @anshika
+   
 # ./target/release/ord --regtest   --cookie-file env/regtest/.cookie   --data-dir env   script-path-sighash   --rawtxhex 02000000014eeb7466e814a86fbadd776b027ff66d5452ca6cb35b617ccb9f988297ba89520000000000fdffffff01905f010000000000160014eb8ad234e24b89225c1f75e2abc8c01d3523e95500000000   --rawspendscriptpathhex 2025f1a245ff572ac11fc1e5da5f6a5a93c946f17c20f1c317c5bae2a0ef2d821cad20d2c1cb1575d323b6120b6e5bcc9ce5ad373e88e73e675030f1c2c5261b4dbc86ac   --script-pubkey-hex-one 51201d8e516e4dc5f094cd9ba04ce7ba847e1be7b4e9e4b9dda76a5f567832401860   --script-pubkey-hex-two 51201d8e516e4dc5f094cd9ba04ce7ba847e1be7b4e9e4b9dda76a5f567832401860   --input-index 0
     inputindex="1"
     print(input_script_hex)
@@ -324,4 +324,4 @@ def run_path_one_unlock():
     return f"✅ Transaction broadcasted!\nTXID: {result.stdout.strip()}"
 
 
-
+ 
